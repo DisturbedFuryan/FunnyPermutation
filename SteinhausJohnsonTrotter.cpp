@@ -5,4 +5,7 @@ CSteinhausJohnsonTrotter::CSteinhausJohnsonTrotter(const unsigned sequenceLength
 }
 
 void CSteinhausJohnsonTrotter::findPermutations() {
+    /* TEST ONLY */
+    CSequence* sequence = addSequence();
+    sequence->element(0) = 9;
 }

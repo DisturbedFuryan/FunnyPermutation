@@ -16,6 +16,8 @@ protected:
     const unsigned m_sequenceLength;
     
     vector<CSequence*>* m_permutations;
+    
+    CSequence* addSequence() { CSequence* sequence = new CSequence(m_sequenceLength); m_permutations->push_back(sequence); return sequence; }
 };
 
 #endif

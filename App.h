@@ -1,6 +1,7 @@
 #ifndef APP_H
 #define APP_H
 
+#include <iostream>
 #include <vector>
 #include "Algorithm.h"
 #include "Sequence.h"
@@ -14,6 +15,10 @@ public:
     
     CApp(const unsigned sequenceLength, const AlgorithmType algorithmToUse);
     ~CApp();
+    
+    void findPermutations();
+    
+    void printPermutations() const;
 
 private:
     IAlgorithm* m_algorithm;
