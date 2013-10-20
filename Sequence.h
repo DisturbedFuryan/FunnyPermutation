@@ -8,7 +8,9 @@ public:
     CSequence(const unsigned length);
     ~CSequence();
     
-    unsigned& element(unsigned position) { return m_array[position]; }
+    void fillAscending();
+    
+    unsigned& element(const unsigned position) const { return m_array[position]; }
     
     void print() const;
     
