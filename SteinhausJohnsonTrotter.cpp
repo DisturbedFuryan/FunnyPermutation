@@ -13,7 +13,7 @@ CSteinhausJohnsonTrotter::~CSteinhausJohnsonTrotter() {
     delete [] m_elementsDirections;
 }
 
-const unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
+unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
     /* Creating the base sequence. Initially it's also a previous sequence. */
     CSequence* sequence = addSequence(), * prevSequence = sequence;
     sequence->fillAscending();
@@ -68,7 +68,7 @@ const unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning
     return sequencesNumber;
 }
 
-const bool CSteinhausJohnsonTrotter::localizeMobilesPositions(const CSequence& source) {
+bool CSteinhausJohnsonTrotter::localizeMobilesPositions(const CSequence& source) {
     /* Removing previously localized mobiles. */
     m_mobilesPositions.clear();
     
@@ -102,7 +102,7 @@ const bool CSteinhausJohnsonTrotter::localizeMobilesPositions(const CSequence& s
     return !m_mobilesPositions.empty();
 }
 
-const unsigned CSteinhausJohnsonTrotter::localizeLargestElementPositionWithinMobiles(const CSequence& source) const {
+unsigned CSteinhausJohnsonTrotter::localizeLargestElementPositionWithinMobiles(const CSequence& source) const {
     vector<unsigned>::const_iterator it = m_mobilesPositions.begin();
     unsigned largestElementPosition = *it;
     ++it;
@@ -114,8 +114,8 @@ const unsigned CSteinhausJohnsonTrotter::localizeLargestElementPositionWithinMob
     return largestElementPosition;
 }
 
- void CSteinhausJohnsonTrotter::printState(const unsigned sequencesNumber, const CSequence& sequence) const {
-     // Printing the number of sequences.
+void CSteinhausJohnsonTrotter::printState(const unsigned sequencesNumber, const CSequence& sequence) const {
+    // Printing the number of sequences.
     IUtility::printAdditionalZeros(sequencesNumber, 5);
     cout << sequencesNumber << ":  ";
     
@@ -138,4 +138,4 @@ const unsigned CSteinhausJohnsonTrotter::localizeLargestElementPositionWithinMob
         cout << sequence.element(*it) << " ";
     }
     cout << endl;
- }
+}

@@ -42,5 +42,8 @@ int main(int argc, char** argv) {
     /* Printing permutations. */
     if (printPermutations == "yes") app.printPermutations();
     
+    /* Validation. */
+    cout << "Validation: " << (app.validation() ? "SUCCESS" : "FAILURE") << endl << endl; 
+    
     return EXIT_SUCCESS;
 }

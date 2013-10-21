@@ -17,9 +17,11 @@ public:
     ~CApp();
     
     /* Finds the permutations and returns a number of found. */
-    const unsigned findPermutations(const bool showRunning = false);
+    unsigned findPermutations(const bool showRunning = false);
     
     void printPermutations() const;
+    
+    bool validation() const;
 
 private:
     IAlgorithm* m_algorithm;

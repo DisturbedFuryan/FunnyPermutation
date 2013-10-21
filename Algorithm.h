@@ -10,7 +10,7 @@ class IAlgorithm {
 public:
     IAlgorithm(const unsigned sequenceLength, vector<CSequence*>* permutations);
     
-    virtual const unsigned findPermutations(const bool showRunning = false) = 0;
+    virtual unsigned findPermutations(const bool showRunning = false) = 0;
     
 protected:
     const unsigned m_sequenceLength;

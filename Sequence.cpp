@@ -8,6 +8,16 @@ CSequence::~CSequence() {
     delete [] m_array;
 }
 
+bool operator==(const CSequence& a, const CSequence& b) {
+    if (a.m_length != b.m_length) return false;
+    return IArray::areIdentical(a.m_array, b.m_array, a.m_length);
+}
+
+bool operator!=(const CSequence& a, const CSequence& b) {
+    if (a.m_length != b.m_length) return true;
+    return !IArray::areIdentical(a.m_array, b.m_array, a.m_length);
+}
+
 bool CSequence::copyFrom(const CSequence& source) {
     if (m_length != source.m_length) {
         return false;
