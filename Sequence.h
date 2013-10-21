@@ -8,6 +8,8 @@ public:
     CSequence(const unsigned length);
     ~CSequence();
     
+    bool copyFrom(const CSequence& source);
+    
     void fillAscending();
     
     unsigned& element(const unsigned position) const { return m_array[position]; }

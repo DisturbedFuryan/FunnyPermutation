@@ -17,8 +17,12 @@ public:
     
 private:
     IUtility::Direction* m_elementsDirections;
-
-    unsigned& largestMobileElement(const CSequence& source) const;
+    
+    vector<unsigned> m_mobilesPositions;
+    
+    const bool localizeMobilesPositions(const CSequence& source);
+    
+    const unsigned localizeLargestElementPositionWithinMobiles(const CSequence& source) const;
 };
 
 #endif
