@@ -6,6 +6,7 @@
 #include "Algorithm.h"
 #include "Sequence.h"
 #include "SteinhausJohnsonTrotter.h"
+#include "Utility.h"
 
 using namespace std;
 

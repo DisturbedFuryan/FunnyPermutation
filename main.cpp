@@ -21,8 +21,13 @@ int main(int argc, char** argv) {
     cout << "Type algorithm to use (1 - SteinhausJohnsonTrotter): "; cin >> choice; cout << endl;
     CApp::AlgorithmType algorithmToUse;
     switch (choice) {
-        case 1: algorithmToUse = CApp::SteinhausJohnsonTrotter;
-                break;
+        case 1: 
+            algorithmToUse = CApp::SteinhausJohnsonTrotter;
+            break;
+                
+        default:
+            algorithmToUse = CApp::SteinhausJohnsonTrotter;
+            break;
     }
     
     // Getting permission for print an algoritm in action.

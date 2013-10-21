@@ -14,6 +14,9 @@ CSteinhausJohnsonTrotter::~CSteinhausJohnsonTrotter() {
 }
 
 unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
+    /* Protection against officious users... */
+    if (m_sequenceLength == 0) return 0;
+    
     /* Creating the base sequence. Initially it's also a previous sequence. */
     CSequence* sequence = addSequence(), * prevSequence = sequence;
     sequence->fillAscending();

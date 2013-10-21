@@ -21,18 +21,19 @@ unsigned CApp::findPermutations(const bool showRunning) {
 }
     
 void CApp::printPermutations() const {
-    for (vector<CSequence*>::const_iterator it = m_permutations.begin(); it != m_permutations.end(); ++it) {
-        (*it)->print(); cout << endl;
+    unsigned permutationNumber = 1;
+    for (vector<CSequence*>::const_iterator it = m_permutations.begin(); it != m_permutations.end(); ++it, ++permutationNumber) {
+        IUtility::printAdditionalZeros(permutationNumber, 5); cout << permutationNumber << ":  "; (*it)->print(); cout << endl;
     }
     cout << endl;
 }
 
 bool CApp::validation() const {
+    if (m_permutations.empty()) return false;
+    
     for (vector<CSequence*>::const_iterator itI = m_permutations.begin(); itI != m_permutations.end(); ++itI) {
         for (vector<CSequence*>::const_iterator itJ = m_permutations.begin(); itJ != m_permutations.end(); ++itJ) {
-            if ((itI != itJ) && (**itI == **itJ)) {
-                return false;
-            }
+            if ((itI != itJ) && (**itI == **itJ)) return false;
         }
     }
     
