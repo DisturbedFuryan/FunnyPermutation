@@ -13,7 +13,7 @@ public:
     CSteinhausJohnsonTrotter(const unsigned sequenceLength, vector<CSequence*>* permutations);
     ~CSteinhausJohnsonTrotter();
 
-    void findPermutations();
+    const unsigned findPermutations(const bool showRunning);
     
 private:
     IUtility::Direction* m_elementsDirections;
@@ -23,6 +23,8 @@ private:
     const bool localizeMobilesPositions(const CSequence& source);
     
     const unsigned localizeLargestElementPositionWithinMobiles(const CSequence& source) const;
+    
+    void printState(const unsigned sequencesNumber, const CSequence& sequence) const;
 };
 
 #endif

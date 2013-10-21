@@ -16,8 +16,8 @@ CApp::~CApp() {
     }
 }
 
-void CApp::findPermutations() {
-    m_algorithm->findPermutations();
+const unsigned CApp::findPermutations(const bool showRunning) {
+    return m_algorithm->findPermutations(showRunning);
 }
     
 void CApp::printPermutations() const {

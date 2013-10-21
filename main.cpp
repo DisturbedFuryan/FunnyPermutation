@@ -25,6 +25,10 @@ int main(int argc, char** argv) {
                 break;
     }
     
+    // Getting permission for print an algoritm in action.
+    string printRunning;
+    cout << "Print how algorithm works? ('yes' or 'no'): "; cin >> printRunning; cout << endl;
+    
     // Getting permission for print permutations.
     string printPermutations;
     cout << "Print permutations? ('yes' or 'no'): "; cin >> printPermutations; cout << endl;
@@ -33,12 +37,10 @@ int main(int argc, char** argv) {
     CApp app(sequenceLength, algorithmToUse);
     
     /* Finding permutations. */
-    app.findPermutations();
+    cout << "Number of found permutations: " << app.findPermutations((printRunning == "yes") ? true : false) << endl << endl;
     
     /* Printing permutations. */
-    if (printPermutations == "yes") {
-        app.printPermutations();
-    }
+    if (printPermutations == "yes") app.printPermutations();
     
     return EXIT_SUCCESS;
 }

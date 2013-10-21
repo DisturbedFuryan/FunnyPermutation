@@ -16,7 +16,8 @@ public:
     CApp(const unsigned sequenceLength, const AlgorithmType algorithmToUse);
     ~CApp();
     
-    void findPermutations();
+    /* Finds the permutations and returns a number of found. */
+    const unsigned findPermutations(const bool showRunning = false);
     
     void printPermutations() const;
 
