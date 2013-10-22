@@ -7,3 +7,39 @@ void IUtility::printAdditionalZeros(const unsigned number, const unsigned digits
         }
     }
 }
+
+unsigned IUtility::getUnsigned(const char* statement) {
+    long number;
+    
+    while (((cout << statement) && !(cin >> number)) || (number < 0)) {
+        cout << "That wasn't an unsigned number!\n";
+        
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    
+    cout << endl;
+    
+    return static_cast<unsigned>(number);
+}
+
+unsigned short IUtility::getUnsignedShort(const char* statement) {
+    long number;
+    
+    while (((cout << statement) && !(cin >> number)) || (number < 0) || (number > numeric_limits<unsigned short>::max())) {
+        cout << "That wasn't an unsigned short number!\n";
+        
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    
+    cout << endl;
+    
+    return static_cast<unsigned short>(number);
+}

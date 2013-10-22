@@ -2,6 +2,7 @@
 #define UTILITY_H
 
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -13,6 +14,9 @@ public:
     static void swap(Direction& a, Direction& b) { const Direction temp = a; a = b; b = temp; }
     
     static void printAdditionalZeros(const unsigned number, const unsigned digitsNumber);
+    
+    static unsigned getUnsigned(const char* statement);
+    static unsigned short getUnsignedShort(const char* statement);
 };
 
 #endif
