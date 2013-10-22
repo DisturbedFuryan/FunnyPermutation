@@ -8,10 +8,9 @@ public:
     CSequence(const unsigned length);
     ~CSequence();
     
+    CSequence& operator=(const CSequence& source);
     friend bool operator==(const CSequence& a, const CSequence& b);
     friend bool operator!=(const CSequence& a, const CSequence& b);
-    
-    bool copyFrom(const CSequence& source);
     
     void fillAscending();
     

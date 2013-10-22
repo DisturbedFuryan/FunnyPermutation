@@ -29,7 +29,7 @@ unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
     
         // We've found mobiles! We can add a new sequence.
         sequence = addSequence();
-        sequence->copyFrom(*prevSequence);
+        *sequence = *prevSequence;
         ++sequencesNumber;
         
         // Determining which of found is the largest.
