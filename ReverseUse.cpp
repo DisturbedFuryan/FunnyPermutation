@@ -5,7 +5,9 @@ CReverseUse::CReverseUse(const unsigned sequenceLength, vector<CSequence*>* perm
                         : IAlgorithm(sequenceLength, permutations) {}
 
 unsigned CReverseUse::findPermutations(const bool showRunning) {
-    if (m_sequenceLength == 0) return 0;
+    if (m_sequenceLength == 0) {
+        return 0;
+    }
     
     CSequence baseSequence(m_sequenceLength);
     baseSequence.fillAscending();
