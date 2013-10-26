@@ -1,3 +1,5 @@
+#include <iostream>
+#include <iomanip>
 #include "ReverseUse.hpp"
 #include "Sequence.hpp"
 
@@ -12,19 +14,43 @@ unsigned CReverseUse::findPermutations(const bool showRunning) {
     CSequence baseSequence(m_sequenceLength);
     baseSequence.fillAscending();
     
-    antylex(m_sequenceLength, baseSequence);
+    antylex(m_sequenceLength, baseSequence, showRunning);
+
+    if (showRunning) {
+        cout << endl;
+    }
     
     return m_permutations->size();
 }
 
-void CReverseUse::antylex(const unsigned m, CSequence& sequence) {
+void CReverseUse::antylex(const unsigned m, CSequence& sequence,
+                          const bool showRunning, const unsigned indent) {
     if (m == 0) {
+        if (showRunning) {
+            cout << "  ";
+            sequence.print();
+            cout << endl;
+        }
+
         CSequence* sequenceOnList = addSequence();
         *sequenceOnList = sequence;
     }
     else {
+        if (showRunning) {
+            if (indent) {
+                cout << setw(indent) << ' ';
+                cout << "\\__";
+            }
+
+            cout << "ANTYLEX(" << m << ")";
+            
+            if (m > 1) {
+                cout << endl;
+            }
+        }
+
         for (unsigned u = 0; u < m; ++u) {
-            antylex((m - 1), sequence);
+            antylex((m - 1), sequence, showRunning, (indent + 4));
             
             if (u < (m - 1)) {
                 sequence.reverse(m);

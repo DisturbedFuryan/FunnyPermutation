@@ -16,7 +16,8 @@ public:
     unsigned findPermutations(const bool showRunning);
     
 private:
-    void antylex(const unsigned m, CSequence& sequence);
+    void antylex(const unsigned m, CSequence& sequence,
+                 const bool showRunning = false, const unsigned indent = 0);
 };
 //==================================================================================================
 
