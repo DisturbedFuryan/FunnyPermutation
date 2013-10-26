@@ -4,9 +4,9 @@ CFLAGS=-c -std=c++0x -Wall
 
 all: FunnyPermutation
 
-FunnyPermutation: main.o App.o Sequence.o Algorithm.o SteinhausJohnsonTrotter.o ReverseUse.o \
+FunnyPermutation: main.o App.o Sequence.o Algorithm.o SteinhausJohnsonTrotter.o ReverseUse.o Bmu.o \
                   Array.o Utility.o Parameters.o
-	$(CC) main.o App.o Sequence.o Algorithm.o SteinhausJohnsonTrotter.o ReverseUse.o Array.o \
+	$(CC) main.o App.o Sequence.o Algorithm.o SteinhausJohnsonTrotter.o ReverseUse.o Bmu.o Array.o \
 	Utility.o Parameters.o -o FunnyPermutation
 
 main.o: main.cpp
@@ -26,6 +26,9 @@ SteinhausJohnsonTrotter.o: SteinhausJohnsonTrotter.cpp
 
 ReverseUse.o: ReverseUse.cpp
 	$(CC) $(CFLAGS) ReverseUse.cpp
+
+Bmu.o: Bmu.cpp
+	$(CC) $(CFLAGS) Bmu.cpp
 
 Array.o: Array.cpp
 	$(CC) $(CFLAGS) Array.cpp

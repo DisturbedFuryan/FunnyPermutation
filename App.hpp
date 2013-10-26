@@ -12,7 +12,7 @@ using namespace std;
 //==================================================================================================
 class CApp : public ISingleton<CApp> {
 public:
-    enum AlgorithmType { SteinhausJohnsonTrotter, ReverseUse };
+    enum AlgorithmType { SteinhausJohnsonTrotter, ReverseUse, Bmu };
     
     CApp(const unsigned sequenceLength, const AlgorithmType algorithmToUse);
     ~CApp();

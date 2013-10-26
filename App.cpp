@@ -1,7 +1,10 @@
 #include <iostream>
 #include "Algorithm.hpp"
 #include "App.hpp"
+#include "Bmu.hpp"
+#include "Parameters.hpp"
 #include "ReverseUse.hpp"
+#include "singletons.hpp"
 #include "Sequence.hpp"
 #include "SteinhausJohnsonTrotter.hpp"
 #include "Utility.hpp"
@@ -14,6 +17,10 @@ CApp::CApp(const unsigned sequenceLength, const AlgorithmType algorithmToUse) {
             
         case ReverseUse:
             m_algorithm = new CReverseUse(sequenceLength, &m_permutations);
+            break;
+
+        case Bmu:
+            m_algorithm = new CBmu(sequenceLength, &m_permutations, g_parameters.recursiveSearch());
             break;
     }
 }

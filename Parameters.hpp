@@ -16,17 +16,20 @@ public:
     CApp::AlgorithmType algorithmType() const;
     bool printWorkingAlgorithm() const;
     bool printPermutations() const;
+    bool recursiveSearch() const;
 private:
     /* Parameters. */
     unsigned m_sequenceLength;
     CApp::AlgorithmType m_algorithmType;
     bool m_printWorkingAlgorithm;
     bool m_printPermutations;
+    bool m_recursiveSearch;
 
     unsigned getSequenceLengthFromUser() const;
     CApp::AlgorithmType getAlgorithmTypeFromUser() const;
     bool getPermissionForPrintWorkingAlgorithm() const;
     bool getPermissionForPrintPermutations() const;
+    bool getPermissionForRecursiveSearch() const;
 };
 //==================================================================================================
 
@@ -44,6 +47,10 @@ inline bool CParameters::printWorkingAlgorithm() const {
 
 inline bool CParameters::printPermutations() const {
     return m_printPermutations;
+}
+
+inline bool CParameters::recursiveSearch() const {
+    return m_recursiveSearch;
 }
 
 #endif
