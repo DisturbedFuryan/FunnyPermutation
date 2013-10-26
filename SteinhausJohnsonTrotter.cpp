@@ -1,11 +1,15 @@
-#include "SteinhausJohnsonTrotter.h"
+#include <iostream>
+#include "Sequence.hpp"
+#include "SteinhausJohnsonTrotter.hpp"
 
-CSteinhausJohnsonTrotter::CSteinhausJohnsonTrotter(const unsigned sequenceLength, vector<CSequence*>* permutations)
-        : IAlgorithm(sequenceLength, permutations) {
+CSteinhausJohnsonTrotter::CSteinhausJohnsonTrotter(const unsigned sequenceLength,
+                                                   vector<CSequence*>* permutations)
+                                                  : IAlgorithm(sequenceLength, permutations) {
     /* Creating array to holding movement directions of elements. */
     m_elementsDirections = new IUtility::Direction[sequenceLength];
     for (unsigned u = 0; u < m_sequenceLength; ++u) {
-        m_elementsDirections[u] = IUtility::Left;  // All elements are going to the left side at startup.
+        // All elements are going to the left side at startup.
+        m_elementsDirections[u] = IUtility::Left;
     }
 }
 
@@ -15,7 +19,9 @@ CSteinhausJohnsonTrotter::~CSteinhausJohnsonTrotter() {
 
 unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
     /* Protection against officious users... */
-    if (m_sequenceLength == 0) return 0;
+    if (m_sequenceLength == 0) {
+        return 0;
+    }
     
     /* Creating the base sequence. Initially it's also a previous sequence. */
     CSequence* sequence = addSequence(), * prevSequence = sequence;
@@ -25,7 +31,9 @@ unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
     
     /* Let's find the permutations! */
     while (localizeMobilesPositions(*sequence)) {  // No mobiles ends search for new permutations.
-        if (showRunning) printState(sequencesNumber, *sequence);
+        if (showRunning) {
+            printState(sequencesNumber, *sequence);
+        }
     
         // We've found mobiles! We can add a new sequence.
         sequence = addSequence();
@@ -33,22 +41,26 @@ unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
         ++sequencesNumber;
         
         // Determining which of found is the largest.
-        largestMobileElementPosition = localizeLargestElementPositionWithinMobiles(*sequence);
+        largestMobileElementPosition = localizeLargestMobilePosition(*sequence);
         
         // The largest mobile is going to the left or right direction?
         switch (m_elementsDirections[largestMobileElementPosition]) {
             case IUtility::Left:
-                // Swapping the largest mobile with the left neighbour.
-                IUtility::swap(sequence->element(largestMobileElementPosition), sequence->element(largestMobileElementPosition - 1));
-                IUtility::swap(m_elementsDirections[largestMobileElementPosition], m_elementsDirections[largestMobileElementPosition - 1]);
+                // Swapping the largest mobile with the left neighbor.
+                IUtility::swap(sequence->element(largestMobileElementPosition),
+                               sequence->element(largestMobileElementPosition - 1));
+                IUtility::swap(m_elementsDirections[largestMobileElementPosition],
+                               m_elementsDirections[largestMobileElementPosition - 1]);
                 --largestMobileElementPosition;
                 
                 break;
                 
             case IUtility::Right:
-                // Swapping the largest mobile with the right neighbour.
-                IUtility::swap(sequence->element(largestMobileElementPosition), sequence->element(largestMobileElementPosition + 1));
-                IUtility::swap(m_elementsDirections[largestMobileElementPosition], m_elementsDirections[largestMobileElementPosition + 1]);
+                // Swapping the largest mobile with the right neighbor.
+                IUtility::swap(sequence->element(largestMobileElementPosition),
+                               sequence->element(largestMobileElementPosition + 1));
+                IUtility::swap(m_elementsDirections[largestMobileElementPosition],
+                               m_elementsDirections[largestMobileElementPosition + 1]);
                 ++largestMobileElementPosition;
                 
                 break;
@@ -56,9 +68,11 @@ unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
         
         // Looking for larger elements than the current.
         for (unsigned u = 0; u < m_sequenceLength; ++u) {
-            if ((u != largestMobileElementPosition) && (sequence->element(u) > sequence->element(largestMobileElementPosition))) {
+            if ((u != largestMobileElementPosition)
+                && (sequence->element(u) > sequence->element(largestMobileElementPosition))) {
                 // OK, we've got one! Let's change its direction.
-                m_elementsDirections[u] = ((m_elementsDirections[u] == IUtility::Left) ? IUtility::Right : IUtility::Left);
+                m_elementsDirections[u] = ((m_elementsDirections[u] == IUtility::Left)
+                                           ? IUtility::Right : IUtility::Left);
             }
         }
         
@@ -66,7 +80,9 @@ unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
         prevSequence = sequence;
     }
     
-    if (showRunning) { printState(sequencesNumber, *sequence); cout << endl; }
+    if (showRunning) {
+        printState(sequencesNumber, *sequence); cout << endl;
+    }
     
     return sequencesNumber;
 }
@@ -83,8 +99,10 @@ bool CSteinhausJohnsonTrotter::localizeMobilesPositions(const CSequence& source)
                 // Searching for any smaller element on the test element path.
                 for (unsigned v = u; v > 0; --v) {
                     if (source.element(v - 1) < source.element(u)) {
-                        m_mobilesPositions.push_back(u);  // Smaller element on path of the test element exist!
-                        break;  // One smaller element is enough to decide that the test element is mobile.
+                        // Smaller element on path of the test element exist!
+                        m_mobilesPositions.push_back(u);
+                        // One smaller element is enough to decide that the test element is mobile.
+                        break;
                     }
                 }
                 break;
@@ -105,19 +123,25 @@ bool CSteinhausJohnsonTrotter::localizeMobilesPositions(const CSequence& source)
     return !m_mobilesPositions.empty();
 }
 
-unsigned CSteinhausJohnsonTrotter::localizeLargestElementPositionWithinMobiles(const CSequence& source) const {
-    vector<unsigned>::const_iterator it = m_mobilesPositions.begin();
-    unsigned largestElementPosition = *it;
-    ++it;
-    for ( ; it != m_mobilesPositions.end(); ++it) {
-        if (source.element(*it) > source.element(largestElementPosition)) {
-            largestElementPosition = *it;
+unsigned CSteinhausJohnsonTrotter::localizeLargestMobilePosition(const CSequence& source) const {
+    unsigned largestElementPosition;
+
+    {
+        vector<unsigned>::const_iterator it = m_mobilesPositions.begin();
+        largestElementPosition = *it;
+        ++it;
+        for ( ; it != m_mobilesPositions.end(); ++it) {
+            if (source.element(*it) > source.element(largestElementPosition)) {
+                largestElementPosition = *it;
+            }
         }
     }
+
     return largestElementPosition;
 }
 
-void CSteinhausJohnsonTrotter::printState(const unsigned sequencesNumber, const CSequence& sequence) const {
+void CSteinhausJohnsonTrotter::printState(const unsigned sequencesNumber,
+                                          const CSequence& sequence) const {
     // Printing the number of sequences.
     IUtility::printAdditionalZeros(sequencesNumber, 5);
     cout << sequencesNumber << ":  ";
@@ -137,8 +161,13 @@ void CSteinhausJohnsonTrotter::printState(const unsigned sequencesNumber, const 
     
     // Printing mobile elements.
     cout << "   Mobile elements:  ";
-    for (vector<unsigned>::const_iterator it = m_mobilesPositions.begin(); it != m_mobilesPositions.end(); ++it) {
-        cout << sequence.element(*it) << " ";
+
+    {
+        vector<unsigned>::const_iterator it;
+        for (it = m_mobilesPositions.begin(); it != m_mobilesPositions.end(); ++it) {
+            cout << sequence.element(*it) << " ";
+        }
     }
+    
     cout << endl;
 }

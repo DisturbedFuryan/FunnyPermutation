@@ -1,4 +1,8 @@
-#include "Utility.h"
+#include <iostream>
+#include <limits>
+#include "Utility.hpp"
+
+using namespace std;
 
 void IUtility::printAdditionalZeros(const unsigned number, const unsigned digitsNumber) {
     for (unsigned u = 1, multiple = 10; u < digitsNumber; ++u, multiple *= 10) {
@@ -29,7 +33,8 @@ unsigned IUtility::getUnsigned(const char* statement) {
 unsigned short IUtility::getUnsignedShort(const char* statement) {
     long number;
     
-    while (((cout << statement) && !(cin >> number)) || (number < 0) || (number > numeric_limits<unsigned short>::max())) {
+    while (((cout << statement) && !(cin >> number)) || (number < 0)
+           || (number > numeric_limits<unsigned short>::max())) {
         cout << "That wasn't an unsigned short number!\n";
         
         cin.clear();

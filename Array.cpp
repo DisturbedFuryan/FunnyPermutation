@@ -1,4 +1,8 @@
-#include "Array.h"
+#include <iostream>
+#include "Array.hpp"
+#include "Utility.hpp"
+
+using namespace std;
 
 void IArray::fillAscending(unsigned* array, const unsigned length) {
     for (unsigned u = 0; u < length; ++u) {
@@ -9,6 +13,12 @@ void IArray::fillAscending(unsigned* array, const unsigned length) {
 void IArray::copy(const unsigned* source, unsigned* destination, const unsigned length) {
     for (unsigned u = 0; u < length; ++u) {
         destination[u] = source[u];
+    }
+}
+
+void IArray::reverse(unsigned* array, const unsigned range) {
+    for (unsigned u = 0, v = (range - 1); u < (range / 2); ++u, --v) {
+        IUtility::swap(array[u], array[v]);
     }
 }
 
