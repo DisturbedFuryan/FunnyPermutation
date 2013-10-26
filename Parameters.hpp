@@ -17,6 +17,7 @@ public:
     bool printWorkingAlgorithm() const;
     bool printPermutations() const;
 private:
+    /* Parameters. */
     unsigned m_sequenceLength;
     CApp::AlgorithmType m_algorithmType;
     bool m_printWorkingAlgorithm;
