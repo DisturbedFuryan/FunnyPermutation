@@ -18,7 +18,9 @@ int main(int argc, char** argv) {
     unsigned sequenceLength = IUtility::getUnsigned("Type sequence length: ");
     
     // Choosing algorithm to use.
-    unsigned short choice = IUtility::getUnsignedShort("Type algorithm to use\n  1 - SteinhausJohnsonTrotter\n  2 - ReverseUse\n> ");
+    unsigned short choice = IUtility::getUnsignedShort("Type algorithm to use\n"
+                                                       "  1 - SteinhausJohnsonTrotter\n"
+                                                       "  2 - ReverseUse\n> ");
     CApp::AlgorithmType algorithmToUse;
     switch (choice) {
         case 1: 

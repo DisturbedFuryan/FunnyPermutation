@@ -25,7 +25,7 @@ public:
     bool validation() const;
 
     /* Get methods. */
-    const vector<CSequence*>& permutations();
+    const vector<CSequence*>& permutations() const;
 
 private:
     IAlgorithm* m_algorithm;
@@ -34,7 +34,7 @@ private:
 };
 //==================================================================================================
 
-inline const vector<CSequence*>& CApp::permutations() {
+inline const vector<CSequence*>& CApp::permutations() const {
     return m_permutations;
 }
 
