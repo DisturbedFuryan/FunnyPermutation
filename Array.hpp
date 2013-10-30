@@ -4,6 +4,9 @@
 //==================================================================================================
 class IArray {
 public:
+    static void fillWithZeros(unsigned* array, const unsigned length);
+    static bool isFillWithZeros(unsigned* array, const unsigned length);
+
     static void fillAscending(unsigned* array, const unsigned length);
     
     static void copy(const unsigned* source, unsigned* destination, const unsigned length);

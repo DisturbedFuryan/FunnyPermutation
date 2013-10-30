@@ -22,7 +22,7 @@ private:
     void recursivePerm(const unsigned m, CSequence& sequence,
                  const bool showRunning = false, const unsigned indent = 0);
 
-    void nonrecursivePerm(const CSequence& baseSequence, const bool showRunning = false);
+    void nonrecursivePerm(CSequence& baseSequence, const bool showRunning = false);
 
     unsigned b(const unsigned m, const unsigned u) const;
 };

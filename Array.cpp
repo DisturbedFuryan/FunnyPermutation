@@ -4,6 +4,21 @@
 
 using namespace std;
 
+void IArray::fillWithZeros(unsigned* array, const unsigned length) {
+    for (unsigned u = 0; u < length; ++u) {
+        array[u] = 0;
+    }
+}
+
+bool IArray::isFillWithZeros(unsigned* array, const unsigned length) {
+    for (unsigned u = 0; u < length; ++u) {
+        if (array[u] != 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void IArray::fillAscending(unsigned* array, const unsigned length) {
     for (unsigned u = 0; u < length; ++u) {
         array[u] = (u + 1);
