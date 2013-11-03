@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Sequence.hpp"
 #include "SteinhausJohnsonTrotter.hpp"
+#include "Timer.hpp"
 
 CSteinhausJohnsonTrotter::CSteinhausJohnsonTrotter(const unsigned sequenceLength,
                                                    vector<CSequence*>* permutations)
@@ -22,6 +23,9 @@ unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
     if (m_sequenceLength == 0) {
         return 0;
     }
+
+    CTimer tmr;
+    tmr.start();
     
     /* Creating the base sequence. Initially it's also a previous sequence. */
     CSequence* sequence = addSequence(), * prevSequence = sequence;
@@ -31,9 +35,11 @@ unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
     
     /* Let's find the permutations! */
     while (localizeMobilesPositions(*sequence)) {  // No mobiles ends search for new permutations.
+        tmr.pause();
         if (showRunning) {
             printState(sequencesNumber, *sequence);
         }
+        tmr.unpause();
     
         // We've found mobiles! We can add a new sequence.
         sequence = addSequence();
@@ -80,9 +86,12 @@ unsigned CSteinhausJohnsonTrotter::findPermutations(const bool showRunning) {
         prevSequence = sequence;
     }
     
+    tmr.pause();
     if (showRunning) {
         printState(sequencesNumber, *sequence); cout << endl;
     }
+
+    cout << "Permutations were found in " << tmr.getTime() << " seconds.\n\n";
     
     return sequencesNumber;
 }
