@@ -19,6 +19,7 @@ public:
     
     bool isStarted() const;
     bool isPaused() const;
+    
 private:
     long int m_startClockTicks;
     long int m_pausedTicks;

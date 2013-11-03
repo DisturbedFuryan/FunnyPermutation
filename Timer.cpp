@@ -37,9 +37,7 @@ double CTimer::getTime() {
         if (m_paused) {
             return (static_cast<double>(m_pausedTicks) / 1000000000.0);
         }
-        else {
-            return (static_cast<double>(getClockTicks() - m_startClockTicks) / 1000000000.0);
-        }
+        return (static_cast<double>(getClockTicks() - m_startClockTicks) / 1000000000.0);
     }
     return 0.0;
 }
