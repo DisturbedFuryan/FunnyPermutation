@@ -5,9 +5,9 @@ CFLAGS=-c -std=c++0x -Wall
 all: FunnyPermutation
 
 FunnyPermutation: main.o App.o Sequence.o Algorithm.o SteinhausJohnsonTrotter.o ReverseUse.o Bmu.o \
-                  Array.o Utility.o Parameters.o
+                  Array.o Utility.o Parameters.o Timer.o
 	$(CC) main.o App.o Sequence.o Algorithm.o SteinhausJohnsonTrotter.o ReverseUse.o Bmu.o Array.o \
-	Utility.o Parameters.o -o FunnyPermutation
+	Utility.o Parameters.o Timer.o -lrt -o FunnyPermutation
 
 main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp
@@ -38,6 +38,9 @@ Utility.o: Utility.cpp
 
 Parameters.o: Parameters.cpp
 	$(CC) $(CFLAGS) Parameters.cpp
+
+Timer.o: Timer.cpp
+	$(CC) $(CFLAGS) Timer.cpp
 
 clean:
 	rm -rf *.o FunnyPermutation
