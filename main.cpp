@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     }
     
     /* Validation. */
-    cout << "Validation: " << (app.validation() ? "SUCCESS" : "FAILURE") << endl << endl; 
+    cout << "Result: " << (app.validation() ? "SUCCESS" : "FAILURE") << endl << endl; 
     
     return EXIT_SUCCESS;
 }
