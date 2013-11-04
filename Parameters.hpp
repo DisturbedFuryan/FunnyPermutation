@@ -17,6 +17,7 @@ public:
     bool printWorkingAlgorithm() const;
     bool printPermutations() const;
     bool recursiveSearch() const;
+    bool validation() const;
 private:
     /* Parameters. */
     unsigned m_sequenceLength;
@@ -24,12 +25,14 @@ private:
     bool m_printWorkingAlgorithm;
     bool m_printPermutations;
     bool m_recursiveSearch;
+    bool m_validation;
 
     unsigned getSequenceLengthFromUser() const;
     CApp::AlgorithmType getAlgorithmTypeFromUser() const;
     bool getPermissionForPrintWorkingAlgorithm() const;
     bool getPermissionForPrintPermutations() const;
     bool getPermissionForRecursiveSearch() const;
+    bool getPermissionForValidation() const;
 };
 //==================================================================================================
 
@@ -51,6 +54,10 @@ inline bool CParameters::printPermutations() const {
 
 inline bool CParameters::recursiveSearch() const {
     return m_recursiveSearch;
+}
+
+inline bool CParameters::validation() const {
+    return m_validation;
 }
 
 #endif

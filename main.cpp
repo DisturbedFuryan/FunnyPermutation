@@ -5,6 +5,7 @@
 
 using namespace std;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv) {
     cout << endl;
     
@@ -25,7 +26,10 @@ int main(int argc, char** argv) {
     }
     
     /* Validation. */
-    cout << "Result: " << (app.validation() ? "SUCCESS" : "FAILURE") << endl << endl; 
+    if (parameters.validation()) {
+        cout << "Result: " << (app.validation() ? "SUCCESS" : "FAILURE") << endl << endl; 
+    }
     
     return EXIT_SUCCESS;
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////

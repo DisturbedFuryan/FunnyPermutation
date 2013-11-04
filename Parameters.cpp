@@ -7,7 +7,8 @@
 using namespace std;
 
 CParameters::CParameters() : m_sequenceLength(3), m_printWorkingAlgorithm(true),
-                             m_printPermutations(true), m_recursiveSearch(false) {
+                             m_printPermutations(true), m_recursiveSearch(false),
+                             m_validation(false) {
     m_algorithmType = CApp::SteinhausJohnsonTrotter;
 }
 
@@ -22,6 +23,7 @@ void CParameters::getParametersFromUser() {
 
     m_printWorkingAlgorithm = getPermissionForPrintWorkingAlgorithm();
     m_printPermutations = getPermissionForPrintPermutations();
+    m_validation = getPermissionForValidation();
 }
 
 unsigned CParameters::getSequenceLengthFromUser() const {
@@ -79,4 +81,15 @@ bool CParameters::getPermissionForRecursiveSearch() const {
     cout << endl;
 
     return (recursiveSearch == "yes");
+}
+
+bool CParameters::getPermissionForValidation() const {
+    string validation = "no";
+    cout << "Validate? ('yes' or 'no'): ";
+    cin >> validation;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << endl;
+
+    return (validation == "yes");
 }
