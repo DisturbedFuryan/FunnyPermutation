@@ -4,6 +4,7 @@
 #include "Bmu.hpp"
 #include "Sequence.hpp"
 #include "Utility.hpp"
+#include "Timer.hpp"
 
 CBmu::CBmu(const unsigned sequenceLength, vector<CSequence*>* permutations,
            const bool recursiveSearch)
@@ -13,37 +14,46 @@ unsigned CBmu::findPermutations(const bool showRunning) {
     if (m_sequenceLength == 0) {
         return 0;
     }
+
+    CTimer tmr;
+    tmr.start();
     
     CSequence baseSequence(m_sequenceLength);
     baseSequence.fillAscending();
     
     if (m_recursiveSearch) {
-        recursivePerm(m_sequenceLength, baseSequence, showRunning);
+        recursivePerm(m_sequenceLength, baseSequence, tmr, showRunning);
     }
     else {
-        nonrecursivePerm(baseSequence, showRunning);
+        nonrecursivePerm(baseSequence, tmr, showRunning);
     }
 
+    tmr.pause();
     if (showRunning) {
         cout << endl;
     }
 
+    cout << "Permutations were found in " << tmr.getTime() << " seconds.\n\n";
+
     return m_permutations->size();
 }
 
-void CBmu::recursivePerm(const unsigned m, CSequence& sequence,
-                 const bool showRunning, const unsigned indent) {
+void CBmu::recursivePerm(const unsigned m, CSequence& sequence, CTimer& tmr,
+                         const bool showRunning, const unsigned indent) {
     if (m == 0) {
+        tmr.pause();
         if (showRunning) {
             cout << "  ";
             sequence.print();
             cout << endl;
         }
+        tmr.unpause();
 
         CSequence* sequenceOnList = addSequence();
         *sequenceOnList = sequence;
     }
     else {
+        tmr.pause();
         if (showRunning) {
             if (indent) {
                 cout << setw(indent) << ' ';
@@ -56,9 +66,10 @@ void CBmu::recursivePerm(const unsigned m, CSequence& sequence,
                 cout << endl;
             }
         }
+        tmr.unpause();
 
         for (unsigned u = 0; u < m; ++u) {
-            recursivePerm((m - 1), sequence, showRunning, (indent + 4));
+            recursivePerm((m - 1), sequence, tmr, showRunning, (indent + 4));
             
             if (u < (m - 1)) {
                 IUtility::swap(sequence.element(b(m, u)), sequence.element(m - 1));
@@ -67,7 +78,7 @@ void CBmu::recursivePerm(const unsigned m, CSequence& sequence,
     }
 }
 
-void CBmu::nonrecursivePerm(CSequence& baseSequence, const bool showRunning) {
+void CBmu::nonrecursivePerm(CSequence& baseSequence, CTimer& tmr, const bool showRunning) {
     /* Putting the base sequence on list. */
     CSequence* sequenceOnList = addSequence();
     *sequenceOnList = baseSequence;
@@ -88,12 +99,14 @@ void CBmu::nonrecursivePerm(CSequence& baseSequence, const bool showRunning) {
          * It's true that the array is filled with zeros right now,
          * but on the first loop it's going to change. */
         do {
+            tmr.pause();
             if (showRunning) {
                 /* Just printing status of mUseCount array. */
                 cout << "mUseCount: [ "; 
                 IArray::print(mUseCount, m_sequenceLength);
                 cout << "]\n";
             }
+            tmr.unpause();
 
             /* Let's check values inside the mUseCount array.
              * All elements before "the first found free m" will be reset. */
