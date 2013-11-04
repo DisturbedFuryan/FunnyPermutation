@@ -17,6 +17,8 @@ int main(int argc, char** argv) {
     CApp app(parameters.sequenceLength(), parameters.algorithmType());
     
     /* Finding permutations and printing number of found. */
+    cout << "Finding...\n\n";
+    cout.flush();
     cout << "Number of found permutations: " 
          << app.findPermutations(parameters.printWorkingAlgorithm()) << endl << endl;
     
