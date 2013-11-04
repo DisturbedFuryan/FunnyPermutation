@@ -2,6 +2,7 @@
 #define REVERSEUSE_HPP
 
 class CSequence;
+class CTimer;
 
 #include <vector>
 #include "Algorithm.hpp"
@@ -16,7 +17,7 @@ public:
     unsigned findPermutations(const bool showRunning);
     
 private:
-    void antylex(const unsigned m, CSequence& sequence,
+    void antylex(const unsigned m, CSequence& sequence, CTimer& tmr,
                  const bool showRunning = false, const unsigned indent = 0);
 };
 //==================================================================================================
