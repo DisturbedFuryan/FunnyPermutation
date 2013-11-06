@@ -92,7 +92,7 @@ void CBmu::nonrecursivePerm(CSequence& baseSequence, CTimer& tmr, const bool sho
          * And yes, first cell is unused. */
         unsigned mUseCount[m_sequenceLength];
 
-        //Initially it's filled with zeros of course.
+        // Initially it's filled with zeros of course.
         IArray::fillWithZeros(mUseCount, m_sequenceLength);
 
         /* Actualizing mUseCount until it will be filled with zeros only.
